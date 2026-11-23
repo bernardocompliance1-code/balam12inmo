@@ -1,0 +1,37 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // CAMBIA el correo por el del administrador (el mismo de firebase-config.js)
+    function esAdmin() {
+      return request.auth != null
+        && request.auth.token.email_verified == true
+        && request.auth.token.email in ['tucorreo@gmail.com'];
+    }
+
+    function esActivo() {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/usuarios/$(request.auth.uid))
+        && get(/databases/$(database)/documents/usuarios/$(request.auth.uid)).data.estado == 'activo';
+    }
+
+    // Usuarios: cada persona se registra como "pendiente"; solo el administrador autoriza.
+    match /usuarios/{uid} {
+      allow read: if request.auth != null && (request.auth.uid == uid || esActivo() || esAdmin());
+      allow create: if esAdmin()
+        || (request.auth != null && request.auth.uid == uid
+            && request.resource.data.estado == 'pendiente'
+            && request.resource.data.rol == 'Agente');
+      // El usuario solo puede cambiar su nombre y teléfono; el administrador cambia todo.
+      allow update: if esAdmin()
+        || (request.auth != null && request.auth.uid == uid
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['telefono', 'nombre']));
+      allow delete: if esAdmin();
+    }
+
+    // Datos de la inmobiliaria: solo usuarios autorizados
+    match /clientes/{id}  { allow read, write: if esActivo() || esAdmin(); }
+    match /inmuebles/{id} { allow read, write: if esActivo() || esAdmin(); }
+    match /citas/{id}     { allow read, write: if esActivo() || esAdmin(); }
+  }
+}

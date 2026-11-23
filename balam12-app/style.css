@@ -1,0 +1,43 @@
+:root{--bg:#fff;--card:#fff;--ink:#1d2a27;--mut:#66726e;--pri:#1d4ed8;--pri2:#1e3a8a;--acc:#1d4ed8;--line:#ddd7c9;--bad:#b3392d;--warn:#b9741a;--ok:#2d7a4f}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{background:var(--pri);color:#fff;padding:12px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+header b{font-size:18px;letter-spacing:.06em}header small{opacity:.8;display:block;font-size:11px;letter-spacing:.14em}
+.chip{margin-left:auto;background:rgba(255,255,255,.16);padding:4px 10px;border-radius:99px;font-size:12px}
+nav{display:flex;gap:4px;padding:8px 12px 0;overflow-x:auto;border-bottom:1px solid var(--line);background:#fff}
+nav button{border:0;background:none;padding:10px 14px;font:inherit;color:var(--mut);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}
+nav button.on{color:var(--pri);border-color:var(--acc);font-weight:600}
+.badge{background:var(--bad);color:#fff;border-radius:99px;font-size:11px;padding:1px 7px;margin-left:5px}
+main{max-width:920px;margin:0 auto;padding:14px}
+.pad{padding:24px}.muted{color:var(--mut)}.grow{flex:1}
+.bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:8px 12px;font:inherit;cursor:pointer;color:var(--ink);text-decoration:none;display:inline-block}
+.btn:hover{background:#eef2fb}.btn.pri{background:var(--pri);border-color:var(--pri);color:#fff}.btn.pri:hover{background:var(--pri2)}
+.btn.bad{color:var(--bad)}.btn.wa{background:#1fa855;border-color:#1fa855;color:#fff}.btn.sm{padding:4px 9px;font-size:13px}
+input,select,textarea{font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;width:100%;color:var(--ink)}
+.bar input,.bar select{width:auto}
+label{display:block;font-size:13px;color:var(--mut);margin:10px 0 4px}
+label.ck{display:flex;gap:8px;align-items:flex-start;color:var(--ink);font-size:14px}label.ck input{width:auto;margin-top:3px}
+textarea{min-height:70px;resize:vertical}
+.cap{text-transform:capitalize;font-size:17px;margin:6px 0 10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px;display:flex;gap:14px;align-items:flex-start}
+.card .hr{font-size:20px;font-weight:700;color:var(--pri);min-width:62px}
+.card .bd{flex:1;min-width:0}.card .bd h4{margin:0 0 2px;font-size:16px}
+.card .ac{display:flex;gap:6px;flex-wrap:wrap}
+.tag{display:inline-block;font-size:12px;padding:2px 8px;border-radius:99px;background:#eee8d8;margin:4px 4px 0 0}
+.tag.ok{background:#dcefe3;color:var(--ok)}.tag.bad{background:#f4dcd8;color:var(--bad)}.tag.warn{background:#f7e8cf;color:var(--warn)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}.hide{display:none}
+.ov{position:fixed;inset:0;background:rgba(20,30,28,.5);display:flex;align-items:flex-start;justify-content:center;padding:20px 12px;overflow:auto;z-index:10}
+.box{background:#fff;border-radius:14px;padding:18px;width:100%;max-width:480px;box-shadow:0 10px 40px rgba(0,0,0,.25)}
+.box h3{margin:0 0 6px}.acts{display:flex;gap:8px;justify-content:flex-end;margin-top:16px;flex-wrap:wrap}
+.warnbox{background:#fbf0dc;border:1px solid #ecd29b;border-radius:8px;padding:8px 12px;margin:8px 0}
+.banner{background:#fbf0dc;border:1px solid #ecd29b;padding:10px 14px;border-radius:10px;margin-bottom:12px}
+.banner.red{background:#f9e3df;border-color:#e6b1aa}
+#toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#222;color:#fff;padding:10px 16px;border-radius:10px;z-index:20;display:none;max-width:90%}
+@media(max-width:520px){.card{flex-direction:column;gap:6px}.row2{grid-template-columns:1fr}}
+.login{max-width:380px;margin:60px auto;text-align:center;padding:24px}
+.login img{width:84px;height:84px;border-radius:20px}
+.login h1{margin:12px 0 4px;color:var(--pri);letter-spacing:.05em}
+.hbtn{background:rgba(255,255,255,.16);border:0;color:#fff;border-radius:8px;padding:5px 10px;font:inherit;font-size:13px;cursor:pointer}
+header .chip{margin-left:auto}
+@media(display-mode:standalone){body{padding-bottom:env(safe-area-inset-bottom)}}
